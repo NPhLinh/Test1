@@ -6,9 +6,9 @@
                     <div class="my-4 text-center">
                         <img src="https://vareno.vn/wp-content/uploads/2021/07/logo-noi-that-9.jpg" width="180"
                             alt="" />
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
+                                             </div>
+                                           <div class="card">
+                                           <div class="card-body">
                             <div class="border p-4 rounded">
                                 <div class="text-center">
                                     <h3 class="">ADMIN ĐĂNG</h3>
