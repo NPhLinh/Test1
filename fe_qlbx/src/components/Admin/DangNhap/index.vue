@@ -6,12 +6,13 @@
                     <div class="my-4 text-center">
                         <img src="https://vareno.vn/wp-content/uploads/2021/07/logo-noi-that-9.jpg" width="180"
                             alt="" />
-                                             </div>
-                                           <div class="card">
-                                           <div class="card-body">
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
                             <div class="border p-4 rounded">
                                 <div class="text-center">
                                     <h3 class="">ADMIN ĐĂNG</h3>
+                                    a
                                     <h1>Day</h1>
                                 </div>
                                 <div class="login-separater text-center mb-4">
@@ -25,7 +26,8 @@
                                                 <div class="input-group-text bg-transparent">
                                                     <i class="fa-solid fa-envelope"></i>
                                                 </div>
-                                                <input v-model="tai_khoan_admin.email" type="email" class="form-control border-end-0">
+                                                <input v-model="tai_khoan_admin.email" type="email"
+                                                    class="form-control border-end-0">
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -33,12 +35,14 @@
                                             <div class="input-group">
                                                 <div class="input-group-text bg-transparent"><i
                                                         class="fa-solid fa-lock"></i></div>
-                                                <input v-model="tai_khoan_admin.password" type="password" class="form-control border-end-0">
+                                                <input v-model="tai_khoan_admin.password" type="password"
+                                                    class="form-control border-end-0">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="d-grid">
-                                                <button v-on:click="dangNhap()" type="button" class="btn btn-outline-primary"><i
+                                                <button v-on:click="dangNhap()" type="button"
+                                                    class="btn btn-outline-primary"><i
                                                         class="fa-solid fa-lock-open"></i>Đăng Nhập</button>
                                             </div>
                                         </div>
@@ -59,24 +63,24 @@ import { createToaster } from "@meforma/vue-toaster";
 import baseRequest from '../../../core/baseRequest';
 const toaster = createToaster({ position: "top-right" });
 export default {
-    data(){
-        return{
-            tai_khoan_admin:{}
+    data() {
+        return {
+            tai_khoan_admin: {}
         }
     },
-    methods:{
-        dangNhap(){
+    methods: {
+        dangNhap() {
             baseRequest
-            .post('admin/dang-nhap', this.tai_khoan_admin)
-            .then((res)=>{
-                if(res.data.status == true){
-                    toaster.success(res.data.message);
-                    this.$router.push('/admin/san-pham');
-                    localStorage.setItem('chia_khoa_16', res.data.chia_khoa);
-                }else{
-                    toaster.error(res.data.message);
-                }
-            })
+                .post('admin/dang-nhap', this.tai_khoan_admin)
+                .then((res) => {
+                    if (res.data.status == true) {
+                        toaster.success(res.data.message);
+                        this.$router.push('/admin/san-pham');
+                        localStorage.setItem('chia_khoa_16', res.data.chia_khoa);
+                    } else {
+                        toaster.error(res.data.message);
+                    }
+                })
         }
     }
 }
