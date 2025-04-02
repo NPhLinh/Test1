@@ -11,7 +11,7 @@
                         <div class="card-body">
                             <div class="border p-4 rounded">
                                 <div class="text-center">
-                                    <h3 class="">ADMIN ĐĂNG NHẬP</h3>
+                                    <h3 class="">ADMIN</h3>
                                 </div>
                                 <div class="login-separater text-center mb-4">
                                     <hr />
