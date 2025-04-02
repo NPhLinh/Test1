@@ -12,7 +12,6 @@
                             <div class="border p-4 rounded">
                                 <div class="text-center">
                                     <h3 class="">ADMIN ĐĂNG</h3>
-                                    <h1>Day</h1>
                                 </div>
                                 <div class="login-separater text-center mb-4">
                                     <hr />
