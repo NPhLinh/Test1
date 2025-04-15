@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\HocVien;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HocVienController extends Controller
 {
@@ -25,10 +26,47 @@ class HocVienController extends Controller
             'status'   =>   true
         ]);
     }
-    public function getData(){
+    public function dangNhap(Request $request)
+    {
+        $check = Auth::guard('hoc_vien')->attempt([
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
+        if ($check) {
+            $user = Auth::guard('hoc_vien')->user();
+            return response()->json([
+                'message'  =>   'Đăng nhập thành công.',
+                'status'   =>   true,
+                'chia_khoa' =>   $user->createToken('ma_so_chia_khoa_hoc_vien')->plainTextToken,
+                'ten_hoc_vien' =>   $user->ho_ten
+            ]);
+        } else {
+            return response()->json([
+                'message'  =>   'Sai thông tin đăng nhập.',
+                'status'   =>   false,
+            ]);
+        }
+    }
+    public function getData()
+    {
         $data = HocVien::select()->get();
         return response()->json([
             'data' => $data,
         ]);
+    }
+    public function kiemTraChiaKhoa()
+    {
+        $check = $this->isUserHocVien();
+        if ($check) {
+            return response()->json([
+                'status'   =>   true,
+                'message'  =>   '',
+            ]);
+        } else {
+            return response()->json([
+                'status'   =>   false,
+                'message'  =>   'Yêu Cầu Đăng Nhập',
+            ]);
+        }
     }
 }

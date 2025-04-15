@@ -20,23 +20,40 @@ class AdminController extends Controller
             'status'   =>   true
         ]);
     }
-    public function dangNhap(Request $request){
+    public function dangNhap(Request $request)
+    {
         $check = Auth::guard('admin')->attempt([
             'email' => $request->email,
             'password' => $request->password,
         ]);
-        if($check){
+        if ($check) {
             $user = Auth::guard('admin')->user();
             return response()->json([
                 'message'  =>   'Đăng nhập thành công.',
                 'status'   =>   true,
+                'chia_khoa' =>   $user->createToken('ma_so_chia_khoa_admin')->plainTextToken,
+                'ten_admin' =>   $user->email
             ]);
-        }else{
+        } else {
             return response()->json([
                 'message'  =>   'Sai thông tin đăng nhập.',
                 'status'   =>   false,
             ]);
         }
-
+    }
+    public function kiemTraChiaKhoa()
+    {
+        $check = $this->isUserAdmin();
+        if ($check) {
+            return response()->json([
+                'status'   =>   true,
+                'message'  =>   'aaa',
+            ]);
+        } else {
+            return response()->json([
+                'status'   =>   false,
+                'message'  =>   'Yêu Cầu Đăng Nhập',
+            ]);
+        }
     }
 }
