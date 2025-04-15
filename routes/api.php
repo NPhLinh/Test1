@@ -39,3 +39,5 @@ Route::get('/to-chuc/data', [ToChucCapChungChiController::class,'getData']);
 Route::post('/to-chuc/kiem-tra-chia-khoa', [ToChucCapChungChiController::class,'kiemTraChiaKhoa']);
 
 
+
+Route::get('/admin/lich-su-giao-dich', [LichSuGiaoDichController::class,'adminGetLSGiaoDich']);

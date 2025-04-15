@@ -7,59 +7,14 @@ use Illuminate\Http\Request;
 
 class LichSuGiaoDichController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function adminGetLSGiaoDich()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(LichSuGiaoDich $lichSuGiaoDich)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(LichSuGiaoDich $lichSuGiaoDich)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, LichSuGiaoDich $lichSuGiaoDich)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(LichSuGiaoDich $lichSuGiaoDich)
-    {
-        //
+        $data = LichSuGiaoDich::join('chung_chis', 'lich_su_giao_dichs.id_chung_chi', 'chung_chis.id')
+            ->join('hoc_viens', 'chung_chis.id_hoc_vien', 'hoc_viens.id')
+            ->select('lich_su_giao_dichs.*', 'ho_ten')
+            ->get();
+        return response()->json([
+            'data' => $data
+        ]);
     }
 }
